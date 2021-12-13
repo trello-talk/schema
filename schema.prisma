@@ -21,7 +21,6 @@ model Server {
   serverID      String   @unique @db.VarChar(255)
   bannedFromUse Boolean  @default(false)
   banReason     String?  @db.VarChar(255)
-  premium       Boolean  @default(false)
   locale        String?  @db.VarChar(255)
   prefix        String?  @db.VarChar(255)
   maxWebhooks   Int      @default(5)
@@ -32,26 +31,28 @@ model Server {
 }
 
 model User {
-  id             Int      @id @default(autoincrement())
-  userID         String   @unique @db.VarChar(255)
-  bannedFromUse  Boolean  @default(false)
-  banReason      String?  @db.VarChar(255)
-  premium        Boolean  @default(false)
-  trelloToken    String?  @db.VarChar(255)
-  trelloID       String?  @db.VarChar(255)
-  currentBoard   String?  @db.VarChar(255)
-  locale         String?  @db.VarChar(255)
-  prefixes       String[] @db.VarChar(255)
-  createdAt      DateTime @db.Timestamptz(6) @default(now())
-  updatedAt      DateTime @db.Timestamptz(6) @updatedAt
-  discordToken   String?  @db.VarChar(255)
-  discordRefresh String?  @db.VarChar(255)
+  id                 Int      @id @default(autoincrement())
+  userID             String   @unique @db.VarChar(255)
+  bannedFromUse      Boolean  @default(false)
+  banReason          String?  @db.VarChar(255)
+  premiumTrelloToken String?  @db.VarChar(255)
+  trelloToken        String?  @db.VarChar(255)
+  trelloID           String?  @db.VarChar(255)
+  currentBoard       String?  @db.VarChar(255)
+  locale             String?  @db.VarChar(255)
+  prefixes           String[] @db.VarChar(255)
+  createdAt          DateTime @db.Timestamptz(6) @default(now())
+  updatedAt          DateTime @db.Timestamptz(6) @updatedAt
+  discordToken       String?  @db.VarChar(255)
+  discordRefresh     String?  @db.VarChar(255)
 
   @@map("users")
 }
 
 model Webhook {
   id              Int      @id @default(autoincrement())
+  name            String?  @db.VarChar(255)
+  premium         Boolean  @default(false)
   memberID        String?  @db.VarChar(255)
   modelID         String   @db.VarChar(255)
   trelloWebhookID String?  @db.VarChar(255)
